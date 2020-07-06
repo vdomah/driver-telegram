@@ -110,7 +110,7 @@ class TelegramDriver extends HttpDriver
             return in_array($key, ['audio', 'voice', 'video', 'photo', 'location', 'contact', 'document']);
         })->isEmpty();
 
-        return $noAttachments && (! is_null($this->event->get('from')) || ! is_null($this->payload->get('callback_query'))) && isset($this->payload->get('callback_query')['message']) && ! is_null($this->payload->get('update_id'));
+        return $noAttachments && (! is_null($this->event->get('from')) || ! is_null($this->payload->get('callback_query'))) && (isset($this->payload->get('callback_query')['message']) || ! is_null($this->payload->get('message'))) && ! is_null($this->payload->get('update_id'));
     }
 
     /**
